@@ -7,9 +7,8 @@ import pytest
 from billiard.einfo import ExceptionInfo
 
 import t.skip
-from celery.utils.collections import (AttributeDict, BufferMap,
-                                      ConfigurationView, DictAttribute,
-                                      LimitedSet, Messagebuffer)
+from celery.utils.collections import (AttributeDict, BufferMap, ConfigurationView, DictAttribute, LimitedSet,
+                                      Messagebuffer)
 from celery.utils.objects import Bunch
 
 
@@ -178,7 +177,7 @@ class test_LimitedSet:
 
     def test_purge(self):
         # purge now enforces rules
-        # cant purge(1) now. but .purge(now=...) still works
+        # can't purge(1) now. but .purge(now=...) still works
         s = LimitedSet(maxlen=10)
         [s.add(i) for i in range(10)]
         s.maxlen = 2

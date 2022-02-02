@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import codecs
 import os
 import re
@@ -175,7 +175,8 @@ setuptools.setup(
         ]
     },
     project_urls={
-        "Documentation": "http://docs.celeryproject.org/en/latest/index.html",
+        "Documentation": "https://docs.celeryproject.org/en/latest/index.html",
+        "Changelog": "https://docs.celeryproject.org/en/stable/changelog.html",
         "Code": "https://github.com/celery/celery",
         "Tracker": "https://github.com/celery/celery/issues",
         "Funding": "https://opencollective.com/celery"

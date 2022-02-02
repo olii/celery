@@ -145,7 +145,7 @@ have been moved into a new  ``task_`` prefix.
 ``CELERY_QUEUES``                          :setting:`task_queues`
 ``CELERY_ROUTES``                          :setting:`task_routes`
 ``CELERY_SEND_SENT_EVENT``                 :setting:`task_send_sent_event`
-``CELERY_SERIALIZER``                      :setting:`task_serializer`
+``CELERY_TASK_SERIALIZER``                 :setting:`task_serializer`
 ``CELERYD_SOFT_TIME_LIMIT``                :setting:`task_soft_time_limit`
 ``CELERY_TASK_TRACK_STARTED``              :setting:`task_track_started`
 ``CELERY_TASK_REJECT_ON_WORKER_LOST``      :setting:`task_reject_on_worker_lost`
@@ -854,6 +854,28 @@ Default: 1.0.
 Default interval for retrying chord tasks.
 
 .. _conf-database-result-backend:
+
+
+.. setting:: override_backends
+
+``override_backends``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Default: Disabled by default.
+
+Path to class that implements backend.
+
+Allows to override backend implementation.
+This can be useful if you need to store additional metadata about executed tasks,
+override retry policies, etc.
+
+Example:
+
+.. code-block:: python
+
+    override_backends = {"db": "custom_module.backend.class"}
+
+
 
 Database backend settings
 -------------------------
@@ -1599,6 +1621,24 @@ Default: 3.
 
 The maximum number of retry attempts.
 
+.. setting:: azureblockblob_connection_timeout
+
+``azureblockblob_connection_timeout``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Default: 20.
+
+Timeout in seconds for establishing the azure block blob connection.
+
+.. setting:: azureblockblob_read_timeout
+
+``azureblockblob_read_timeout``
+~~~~~~~~~~~~~~~~~~~~
+
+Default: 120.
+
+Timeout in seconds for reading of an azure block blob.
+
 .. _conf-elasticsearch-result-backend:
 
 Elasticsearch backend settings
@@ -2142,7 +2182,7 @@ Examples:
         },
     }
 
-    task_routes = ('myapp.tasks.route_task', {'celery.ping': 'default})
+    task_routes = ('myapp.tasks.route_task', {'celery.ping': 'default'})
 
 Where ``myapp.tasks.route_task`` could be:
 

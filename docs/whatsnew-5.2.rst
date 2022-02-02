@@ -1,9 +1,9 @@
-.. _whatsnew-5.1:
+.. _whatsnew-5.2:
 
 =========================================
- What's new in Celery 5.1 (Sun Harmonics)
+ What's new in Celery 5.2 (Dawn Chorus)
 =========================================
-:Author: Josue Balandrano Coronel (``jbc at rmcomplexity.com``)
+:Author: Omer Katz (``omer.drow at gmail.com``)
 
 .. sidebar:: Change history
 
@@ -23,13 +23,21 @@ Celery has a large and diverse community of users and contributors,
 you should come join us :ref:`on IRC <irc-channel>`
 or :ref:`our mailing-list <mailing-list>`.
 
+.. note::
+
+    Following the problems with Freenode, we migrated our IRC channel to Libera Chat
+    as most projects did.
+    You can also join us using `Gitter <https://gitter.im/celery/celery>`_.
+
+    We're sometimes there to answer questions. We welcome you to join.
+
 To read more about Celery you should go read the :ref:`introduction <intro>`.
 
 While this version is **mostly** backward compatible with previous versions
 it's important that you read the following section as this release
 is a new major version.
 
-This version is officially supported on CPython 3.6, 3.7 & 3.8 & 3.9
+This version is officially supported on CPython 3.7 & 3.8 & 3.9
 and is also supported on PyPy3.
 
 .. _`website`: http://celeryproject.org/
@@ -45,29 +53,27 @@ and is also supported on PyPy3.
 Preface
 =======
 
-The 5.1.0 release is a new minor release for Celery.
+.. note::
 
-Starting from now users should expect more frequent releases of major versions
-as we move fast and break things to bring you even better experience.
+    **This release contains fixes for two (potentially severe) memory leaks.
+    We encourage our users to upgrade to this release as soon as possible.**
+
+The 5.2.0 release is a new minor release for Celery.
 
 Releases in the 5.x series are codenamed after songs of `Jon Hopkins <https://en.wikipedia.org/wiki/Jon_Hopkins>`_.
-This release has been codenamed `Sun Harmonics <https://www.youtube.com/watch?v=pCwjSoBm_pI>`_.
+This release has been codenamed `Dawn Chorus <https://www.youtube.com/watch?v=bvsZBdo5pEk>`_.
 
-From now on we only support Python 3.6 and above.
-We will maintain compatibility with Python 3.6 until it's
-EOL in December, 2021.
+From now on we only support Python 3.7 and above.
+We will maintain compatibility with Python 3.7 until it's
+EOL in June, 2023.
 
 *— Omer Katz*
 
 Long Term Support Policy
 ------------------------
 
-As we'd like to provide some time for you to transition,
-we're designating Celery 4.x an LTS release.
-Celery 4.x will be supported until the 1st of August, 2021.
-
-We will accept and apply patches for bug fixes and security issues.
-However, no new features will be merged for that version.
+We no longer support Celery 4.x as we don't have the resources to do so.
+If you'd like to help us, all contributions are welcome.
 
 Celery 5.x **is not** an LTS release. We will support it until the release
 of Celery 6.x.
@@ -77,50 +83,6 @@ Watch the next "What's New" document for updates.
 
 Wall of Contributors
 --------------------
-
-0xflotus <0xflotus@gmail.com>
-AbdealiJK <abdealikothari@gmail.com>
-Anatoliy <apeks37@yandex.ru>
-Anna Borzenko <aaa-nn-a@mail.ru>
-aruseni <aruseni.magiku@gmail.com>
-Asif Saif Uddin (Auvi) <auvipy@gmail.com>
-Asif Saif Uddin <auvipy@gmail.com>
-Awais Qureshi <awais.qureshi@arbisoft.com>
-careljonkhout <carel.jonkhout@gmail.com>
-Christian Clauss <cclauss@me.com>
-danthegoodman1 <xxdanthegoodmanxx@gmail.com>
-Dave Johansen <davejohansen@gmail.com>
-David Schneider <schneidav81@gmail.com>
-Fahmi <fahmimodelo@gmail.com>
-Felix Yan <felixonmars@archlinux.org>
-Gabriel Augendre <gabriel@augendre.info>
-galcohen <gal.cohen@autodesk.com>
-gal cohen <gal.nevis@gmail.com>
-Geunsik Lim <leemgs@gmail.com>
-Guillaume DE SUSANNE D'EPINAY <guillaume.desusanne@ssi.gouv.fr>
-Hilmar Hilmarsson <hilmarh@gmail.com>
-Illia Volochii <illia.volochii@gmail.com>
-jenhaoyang <randy19962@gmail.com>
-Jonathan Stoppani <jonathan@stoppani.name>
-Josue Balandrano Coronel <jbc@rmcomplexity.com>
-kosarchuksn <sergeykosarchuk@gmail.com>
-Kostya Deev <kostya.deev@bluware.com>
-Matt Hoffman <mjhoffman65@gmail.com>
-Matus Valo <matusvalo@gmail.com>
-Myeongseok Seo <clichedmoog@gmail.com>
-Noam <noamkush@gmail.com>
-Omer Katz <omer.drow@gmail.com>
-pavlos kallis <pakallis@gmail.com>
-Pavol Plaskoň <pavol.plaskon@gmail.com>
-Pengjie Song (宋鹏捷) <spengjie@sina.com>
-Sardorbek Imomaliev <sardorbek.imomaliev@gmail.com>
-Sergey Lyapustin <s.lyapustin@gmail.com>
-Sergey Tikhonov <zimbler@gmail.com>
-Stephen J. Fuhry <steve@tpastream.com>
-Swen Kooij <swen@sectorlabs.ro>
-tned73 <edwin@tranzer.com>
-Tomas Hrnciar <thrnciar@redhat.com>
-tumb1er <zimbler@gmail.com>
 
 .. note::
 
@@ -179,12 +141,12 @@ this effort.
 After the migration is done, run your test suite with Celery 4 to ensure
 nothing has been broken.
 
-Step 5: Upgrade to Celery 5.1
+Step 5: Upgrade to Celery 5.2
 -----------------------------
 
 At this point you can upgrade your workers and clients with the new version.
 
-.. _v510-important:
+.. _v520-important:
 
 Important Notes
 ===============
@@ -192,26 +154,96 @@ Important Notes
 Supported Python Versions
 -------------------------
 
-The supported Python Versions are:
+The supported Python versions are:
 
-- CPython 3.6
 - CPython 3.7
 - CPython 3.8
 - CPython 3.9
-- PyPy3.6 7.2 (``pypy3``)
+- PyPy3.7 7.3 (``pypy3``)
 
-Important Notes
----------------
+Experimental support
+~~~~~~~~~~~~~~~~~~~~
+
+Celery supports these Python versions provisionally as they are not production
+ready yet:
+
+- CPython 3.10 (currently in RC2)
+
+Memory Leak Fixes
+-----------------
+
+Two severe memory leaks have been fixed in this version:
+
+* :class:`celery.result.ResultSet` no longer holds a circular reference to itself.
+* The prefork pool no longer keeps messages in its cache forever when the master
+  process disconnects from the broker.
+
+The first memory leak occurs when you use :class:`celery.result.ResultSet`.
+Each instance held a promise which provides that instance as an argument to
+the promise's callable.
+This caused a circular reference which kept the ResultSet instance in memory
+forever since the GC couldn't evict it.
+The provided argument is now a :func:`weakref.proxy` of the ResultSet's
+instance.
+The memory leak mainly occurs when you use :class:`celery.result.GroupResult`
+since it inherits from :class:`celery.result.ResultSet` which doesn't get used
+that often.
+
+The second memory leak exists since the inception of the project.
+The prefork pool maintains a cache of the jobs it executes.
+When they are complete, they are evicted from the cache.
+However, when Celery disconnects from the broker, we flush the pool
+and discard the jobs, expecting that they'll be cleared later once the worker
+acknowledges them but that has never been the case.
+Instead, these jobs remain forever in memory.
+We now discard those jobs immediately while flushing.
+
+Dropped support for Python 3.6
+------------------------------
+
+Celery now requires Python 3.7 and above.
+
+Python 3.6 will reach EOL in December, 2021.
+In order to focus our efforts we have dropped support for Python 3.6 in
+this version.
+
+If you still require to run Celery using Python 3.6
+you can still use Celery 5.1.
+However we encourage you to upgrade to a supported Python version since
+no further security patches will be applied for Python 3.6 after
+the 23th of December, 2021.
+
+Tasks
+-----
+
+When replacing a task with another task, we now give an indication of the
+replacing nesting level through the ``replaced_task_nesting`` header.
+
+A task which was never replaced has a ``replaced_task_nesting`` value of 0.
 
 Kombu
-~~~~~
+-----
 
-Starting from v5.1, the minimum required version is Kombu 5.1.0.
+Starting from v5.2, the minimum required version is Kombu 5.2.0.
 
-Billiard
-~~~~~~~~
+Prefork Workers Pool
+---------------------
 
-Starting from v5.1, the minimum required version is Billiard 3.6.4.
+Now all orphaned worker processes are killed automatically when main process exits.
+
+Eventlet Workers Pool
+---------------------
+
+You can now terminate running revoked tasks while using the
+Eventlet Workers Pool.
+
+Custom Task Classes
+-------------------
+
+We introduced a custom handler which will be executed before the task
+is started called ``before_start``.
+
+See :ref:`custom-task-cls-app-wide` for more details.
 
 Important Notes From 5.0
 ------------------------
@@ -296,117 +328,66 @@ from the `celery` module instead.
 Given the SDK changes between 0.50.0 and 7.0.0 Kombu deprecates support for
 older `azure-servicebus` versions.
 
-.. _v510-news:
+.. _v520-news:
+
+Bug: Pymongo 3.12.1 is not compatible with Celery 5.2 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For now we are limiting Pymongo version, only allowing for versions between 3.3.0 and 3.12.0.  
+
+This will be fixed in the next patch.
 
 News
 ====
 
-Support for Azure Service Bus 7.0.0
------------------------------------
+Support for invoking chords of unregistered tasks
+-------------------------------------------------
 
-With Kombu v5.1.0 we now support Azure Services Bus.
+Previously if you attempted to publish a chord
+while providing a signature which wasn't registered in the Celery app publishing
+the chord as the body of the chord, an :exc:`celery.exceptions.NotRegistered`
+exception would be raised.
 
-Azure have completely changed the Azure ServiceBus SDK between 0.50.0 and 7.0.0.
-`azure-servicebus >= 7.0.0` is now required for Kombu `5.1.0`
-
-Add support for SQLAlchemy 1.4
-------------------------------
-
-Following the changes in SQLAlchemy 1.4, the declarative base is no
-longer an extension.
-Importing it from sqlalchemy.ext.declarative is deprecated and will
-be removed in SQLAlchemy 2.0.
-
-Support for Redis username authentication
------------------------------------------
-
-Previously, the username was ignored from the URI.
-Starting from Redis>=6.0, that shouldn't be the case since ACL support has landed.
-
-Please refer to the :ref:`documentation <_conf-redis-result-backend>` for details.
-
-SQS transport - support back off policy
-----------------------------------------
-
-SQS now supports managed visibility timeout. This lets us implement a back off
-policy (for instance, an exponential policy) which means that the time between
-task failures will dynamically change based on the number of retries.
-
-Documentation: :doc:`reference/kombu.transport.SQS.rst`
-
-Duplicate successful tasks
----------------------------
-
-The trace function fetches the metadata from the backend each time it
-receives a task and compares its state. If the state is SUCCESS,
-we log and bail instead of executing the task.
-The task is acknowledged and everything proceeds normally.
-
-Documentation: :setting:`worker_deduplicate_successful_tasks`
-
-Terminate tasks with late acknowledgment on connection loss
------------------------------------------------------------
-
-Tasks with late acknowledgement keep running after restart,
-although the connection is lost and they cannot be
-acknowledged anymore. These tasks will now be terminated.
-
-Documentation: :setting:`worker_cancel_long_running_tasks_on_connection_loss`
-
-`task.apply_async(ignore_result=True)` now avoids persisting the result
------------------------------------------------------------------------
-
-`task.apply_async` now supports passing `ignore_result` which will act the same
-as using ``@app.task(ignore_result=True)``.
-
-Use a thread-safe implementation of `cached_property`
------------------------------------------------------
-
-`cached_property` is heavily used in celery but it is causing
-issues in multi-threaded code since it is not thread safe.
-Celery is now using a thread-safe implementation of `cached_property`.
-
-Tasks can now have required kwargs at any order
-------------------------------------------------
-
-Tasks can now be defined like this:
+From now on, you can publish these sort of chords and they would be executed
+correctly:
 
 .. code-block:: python
 
-    from celery import shared_task
+    # movies.task.publish_movie is registered in the current app
+    movie_task = celery_app.signature('movies.task.publish_movie', task_id=str(uuid.uuid4()), immutable=True)
+    # news.task.publish_news is *not* registered in the current app
+    news_task = celery_app.signature('news.task.publish_news', task_id=str(uuid.uuid4()), immutable=True)
 
-    @shared_task
-    def my_func(*, name='default', age, city='Kyiv'):
-        pass
+    my_chord = chain(movie_task,
+                     group(movie_task.set(task_id=str(uuid.uuid4())),
+                           movie_task.set(task_id=str(uuid.uuid4()))),
+                     news_task)
+    my_chord.apply_async()  # <-- No longer raises an exception
 
+Consul Result Backend
+---------------------
 
-SQS - support STS authentication with AWS
------------------------------------------
+We now create a new client per request to Consul to avoid a bug in the Consul
+client.
 
-The STS token requires a refresh after a certain period of time.
-After `sts_token_timeout` is reached, a new token will be created.
+The Consul Result Backend now accepts a new
+:setting:`result_backend_transport_options` key: ``one_client``.
+You can opt out of this behavior by setting ``one_client`` to True.
 
-Documentation: :doc:`getting-started/backends-and-brokers/sqs.rst`
+Please refer to the documentation of the backend if you're using the Consul
+backend to find out which behavior suites you.
 
-Support Redis `health_check_interval`
--------------------------------------
+Filesystem Result Backend
+-------------------------
 
-`health_check_interval` can be configured and will be passed to `redis-py`.
+We now cleanup expired task results while using the
+filesystem result backend as most result backends do.
 
-Documentation: :setting:`redis_backend_health_check_interval`
+ArangoDB Result Backend
+-----------------------
 
+You can now check the validity of the CA certificate while making
+a TLS connection to ArangoDB result backend.
 
-Update default pickle protocol version to 4
---------------------------------------------
-
-The pickle protocol version was updated to allow Celery to serialize larger
-strings among other benefits.
-
-See: https://docs.python.org/3.9/library/pickle.html#data-stream-format
-
-
-Support Redis Sentinel with SSL
--------------------------------
-
-See documentation for more info:
-:doc:`getting-started/backends-and-brokers/redis.rst`
+If you'd like to do so, set the ``verify`` key in the
+:setting:`arangodb_backend_settings`` dictionary to ``True``.

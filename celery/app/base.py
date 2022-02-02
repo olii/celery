@@ -18,10 +18,8 @@ from kombu.utils.uuid import uuid
 from vine import starpromise
 
 from celery import platforms, signals
-from celery._state import (_announce_app_finalized, _deregister_app,
-                           _register_app, _set_current_app, _task_stack,
-                           connect_on_app_finalize, get_current_app,
-                           get_current_worker_task, set_default_app)
+from celery._state import (_announce_app_finalized, _deregister_app, _register_app, _set_current_app, _task_stack,
+                           connect_on_app_finalize, get_current_app, get_current_worker_task, set_default_app)
 from celery.exceptions import AlwaysEagerIgnored, ImproperlyConfigured
 from celery.loaders import get_loader_cls
 from celery.local import PromiseProxy, maybe_evaluate
@@ -32,7 +30,7 @@ from celery.utils.functional import first, head_from_fun, maybe_list
 from celery.utils.imports import gen_task_name, instantiate, symbol_by_name
 from celery.utils.log import get_logger
 from celery.utils.objects import FallbackContext, mro_lookup
-from celery.utils.time import timezone, to_utc
+from celery.utils.time import maybe_make_aware, timezone, to_utc
 
 # Load all builtin tasks
 from . import builtins  # noqa
@@ -41,9 +39,8 @@ from .annotations import prepare as prepare_annotations
 from .autoretry import add_autoretry_behaviour
 from .defaults import DEFAULT_SECURITY_DIGEST, find_deprecated_settings
 from .registry import TaskRegistry
-from .utils import (AppPickler, Settings, _new_key_to_old, _old_key_to_new,
-                    _unpickle_app, _unpickle_app_v2, appstr, bugreport,
-                    detect_settings)
+from .utils import (AppPickler, Settings, _new_key_to_old, _old_key_to_new, _unpickle_app, _unpickle_app_v2, appstr,
+                    bugreport, detect_settings)
 
 __all__ = ('Celery',)
 
@@ -492,7 +489,7 @@ class Celery:
             task = self._tasks[name]
         return task
 
-    def register_task(self, task):
+    def register_task(self, task, **options):
         """Utility for registering a task-based class.
 
         Note:
@@ -505,7 +502,7 @@ class Celery:
             task_cls = type(task)
             task.name = self.gen_task_name(
                 task_cls.__name__, task_cls.__module__)
-        add_autoretry_behaviour(task)
+        add_autoretry_behaviour(task, **options)
         self.tasks[task.name] = task
         task._app = self
         task.bind(self)
@@ -734,7 +731,7 @@ class Celery:
             options, route_name or name, args, kwargs, task_type)
         if expires is not None:
             if isinstance(expires, datetime):
-                expires_s = (expires - self.now()).total_seconds()
+                expires_s = (maybe_make_aware(expires) - self.now()).total_seconds()
             else:
                 expires_s = expires
 
